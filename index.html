@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Brief.me Python Package Index</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
-    <p>This is the PyPI server of Brief.me</p>
-	<div>
-		<a href="marketing-blocks/">marketing-blocks</a>
-	</div>
+    <div class="container">
+      <div class="text-center mt-5">
+        <h2>This is the PyPI server of Brief.me</h2>
+      </div>
+    	<div class="row mt-5">
+        <div class="col-md-12">
+          <table class="table table-bordered table-hover" id="pypi">
+            <thead>
+              <tr>
+                <th scope="col" id="repository"><i class="fab fa-github"></i> Repository</th>
+                <th scope="col" id="description"><i class="far fa-comment"></i> Description</th>
+                <th scope="col" id="index"><i class="fas fa-info-circle"></i> PyPI</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+    	</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script async defer>
+      $(document).ready(function(){
+        var repos = ['marketing-blocks'];
+        repos.reverse();
+
+        var table = $('#pypi').DataTable({
+          "paging": false
+        });
+
+        repos.forEach(function(repo_name){
+          $.get('https://api.github.com/repos/briefmnews/' + repo_name, function(response){
+            console.log(response);
+            table.row.add([
+              '<a href="' + response.html_url + '">' + response.name + '</a>',
+              response.description,
+              '<a href="' + response.name + '">' + response.name + '</a>'
+            ]).draw();
+          }, 'json');
+        });
+
+    });
+
+    </script>
   </body>
 </html>

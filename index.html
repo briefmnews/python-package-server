@@ -35,7 +35,25 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script async defer>
       $(document).ready(function(){
-        let repos = ['marketing-blocks', 'django-esidoc', 'briefme-validator', 'django-segment', 'django-reactive', 'briefme-invoices', 'django-typographie', 'django-ip-access', 'briefme-editorial', 'briefme-subscription', 'django-gar', 'briefme-indexable-feed', 'django-uploads', 'django-consent-user-information', 'onesignal-python', 'django-cookie-consent'];
+        let repos = [
+                'marketing-blocks',
+                'django-esidoc',
+                'briefme-validator',
+                'django-segment',
+                'django-reactive',
+                'briefme-invoices',
+                'django-typographie',
+                'django-ip-access',
+                'briefme-editorial',
+                'briefme-subscription',
+                'django-gar',
+                'briefme-indexable-feed',
+                'django-uploads',
+                'django-consent-user-information',
+                'onesignal-python',
+                'django-cookie-consent',
+                'django-cookie-consent-authenticateduser'
+        ];
         repos.reverse();
 
         let table = $('#pypi').DataTable({

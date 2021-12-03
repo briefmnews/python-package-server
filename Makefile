@@ -6,3 +6,5 @@ bump:
 	git push origin master
 	rm commit_message.txt
 
+make install:
+	pip install -r requirements.txt

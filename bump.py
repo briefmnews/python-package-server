@@ -1,10 +1,7 @@
+from bs4 import BeautifulSoup
+
 import os
 import sys
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError as e:
-    os.system('pip install beautifulsoup4')
 
 
 def _get_app_name(input_message="Enter an app name: "):

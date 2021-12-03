@@ -3,7 +3,13 @@ Brief.me PyPI server
 
 This is the PyPI server of Brief.me
 
-## How to add a new release?
+## How to add a new release with the make command?
+You can use the following make command to create a new app release:
+```bash
+make bump app=marketing-blocks version=0.1
+```
+
+## How to add a new release without the make command?
 Adding a new release for an existing app is a 4 steps process.
 
 ### 1. Update the version number in the setup.py

@@ -39,8 +39,7 @@ if __name__ == "__main__":
     with open("commit_message.txt", "w") as f:
         commit_message = f"chore({app}): release version {version}"
         f.write(commit_message)
-        f.flush()
-        
+
     with open(f"{app}/index.html", "r+") as html:
         soup = BeautifulSoup(html, 'html.parser')
         new_a = soup.new_tag("a")

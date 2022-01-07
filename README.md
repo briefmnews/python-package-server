@@ -9,6 +9,8 @@ You can use the following make command to create a new app release:
 make bump app=marketing-blocks version=0.1
 ```
 
+The 2 parameters `app` and `version` are optional. If not set, the terminal will prompt you to fill them.
+
 ## How to add a new release without the make command?
 Adding a new release for an existing app is a 4 steps process.
 

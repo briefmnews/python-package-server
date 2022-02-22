@@ -32,9 +32,24 @@ def _get_version_number():
     return version_number
 
 
+def _get_protocol(input_message="Enter a protocol (https or ssh): "):
+    try:
+        protocol = sys.argv[3]
+    except IndexError:
+        protocol = input(input_message)
+
+    allowed_protocols = ["https", "ssh"]
+    if protocol not in allowed_protocols:
+        input_message = f"This protocol is not supported. Please choose one in {allowed_protocols}: "
+        protocol = _get_protocol(input_message)
+
+    return protocol
+
+
 if __name__ == "__main__":
     app = _get_app_name()
     version = _get_version_number()
+    protocol = _get_protocol()
 
     with open("commit_message.txt", "w") as f:
         commit_message = f"chore({app}): release version {version}"
@@ -43,7 +58,7 @@ if __name__ == "__main__":
     with open(f"{app}/index.html", "r+") as html:
         soup = BeautifulSoup(html, 'html.parser')
         new_a = soup.new_tag("a")
-        new_a["href"] = f"git+ssh://git@github.com/briefmnews/{app}.git@{version}#egg={app}-{version}"
+        new_a["href"] = f"git+{protocol}://git@github.com/briefmnews/{app}.git@{version}#egg={app}-{version}"
         new_a.string = f"{app}-{version}"
         soup.html.body.insert(0, new_a)
 
